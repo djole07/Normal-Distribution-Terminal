@@ -1,65 +1,7 @@
-/*
-    Koristeći konzolu i nasumično generisane slučajne brojeve
-    po normalnoj distribuciji, vizuelizovati Gausovu krivu
-    koristeći zvezdice. Gausova kriva po X osi ima moguće
-    vrednosti koje su generisane, a po Y osi koliko su vrednosti
-    u tom delu X ose zastupljene, procentualno, u svim
-    generisanim vrednostima. Za opseg Y uzmite od 0 do
-    najveće izmerene vrednosti od svih Y vrednosti,
-    dok za X uzmite plus-minus 2.5 standardne devijacije
-    od srednje vrednosti. Veličina uzorka slučajnih vrednosti,
-    tj. koliko da generišete pre nego probate neka vam je
-    8192.
-
-    Gausova kriva za srednju vrednost 5
-    i standardnu devijaciju 2 izlgeda otprilike ovako ako se
-    posmatra rotirano za 90 stepeni, kao u zadatku pod A:
-    0-1: *
-    1-2: ****
-    2-3: *********
-    3-4: ***************
-    4-5: ******************
-    5-6: *******************
-    6-7: ***************
-    7-8: ********
-    8-9: ****
-    9-10: *
-    Gausova kriva ya srednju vrednost 0 i SD 1, nacrtana
-    uspravno izgleda otprilike ovako:
-                                        * *
-                                     *  ***
-                                     * ***** *
-                                  *  **********
-                                  *  ********** *
-                              ***************** *
-                            * *******************
-                            *********************
-                           ************************ **
-                          ****************************
-                         *******************************
-                       * *******************************
-                      ********************************** *
-                    * ********************************** *
-                    ****************************************
-                    ******************************************
-                 * *******************************************
-                ************************************************
-                **************************************************
-            *******************************************************
-            **********************************************************
-       * * ************************************************************
-   *  ********************************************************************
-   **************************************************************************
-********************************************************************************
-    Odabrati jedan:
-    A) (Lakše) Prikazati Gausovu krivu rotiranu za 90 stepeni.
-    B) (Teže) Prikazati je normalno
-*/
-
 
 /**********************************************************
 *
-*       Crtanje Gausove krive pomozu nasumicnih brojeva
+*       Crtanje Gausove krive pomocu nasumicnih brojeva
 *
 *
 *       Autor: Djordje Mirosavic
@@ -83,7 +25,7 @@
 
 #define ZNAK_ZA_ISPIS '*'       // kojim znakom zelimo da iscrtamo krivu
 
-#define OPSEG 3     // odredjuje koliko devijacija zelimo da ispisemo levo i desno od srednje vrednosti
+#define OPSEG 3                 // odredjuje koliko devijacija zelimo da ispisemo levo i desno od srednje vrednosti
 
 using namespace std;
 
@@ -168,10 +110,6 @@ int main()
     sort(randomNiz.begin(), randomNiz.end());       // sortiramo niz u rastucem poretku da bismo mogli da nadjemo broj pojavljivanja cifara u poditervalima
 
     double maxValue = 1 / (devijacija * sqrt(2 * PI));        // predstavlja najvecu vrednost koju y moze da ima za zadatu standardnu devijaciju
-    // Ovako mislim da je bolje iako u zadatku pise da treba da nadjemo maksimalno y iz datih x-ova, ali bilo bit pomalo sporo da trazim x koje je
-    // najblize srednjoj vrednosti koja je zadata na ulazu, pogotvo ako je broj uzoraka veliki. Za manji broj uzoraka maxValue nece uvek biti blizu vrednosti
-    // iz gorespomenute formule pa je tad bolje naci pravu najvecu vrednost  y iz opsega
-
 
     // korak za kretanje po x i y osi
     const double y_podeok = maxValue / Y_PODEOKA;               // podelim y na Y_PODEOKA jednakih intervala i imamo koliko iznosi 1 podeok
@@ -209,11 +147,6 @@ int main()
 
     long brojZvezdica = Y_PODEOKA * 40;
     // koliko znakova ce biti raspodeljeno na grafiku. Vrednost je uzeta eksperimentalno
-    // ukoliko povecamo opseg koji zelimo da vidimo onda se dosta vrednosti 'prilepi' uz maksimalnu. Jedno od resenja bi bilo da je matrica
-    // dinamicki alocirana, pa da shodno opsegu koji zelimo da vidimo (npr. ukoliko hocemo da vidimo 5 devijacija levo i desno od srednje vrednosti)
-    // onda povecamo i dimenzije matrice da bismo dobili precizniju sliku. Ogranicenje je svakako maksimalna dimenzija prozora terminala, pa za velike
-    // vrednsoti devijacije necemo moci verodostojno da prikazemo grafik (jer cemo nakon sto ispunimo jedan red, nastavak ispisa ce se automatiski nastaviti u narednom redu).
-    // Resenje za ovo moze biti, da ukoliko je moguce, damo signal terminalu da hocemo da imamo i horizontalni scroll pored vec postojeceg vertikalnog
 
 
     vector<int> visine;     // zadajemo visinu ('y vrednost') za svaki 'stub' koji ispisujemo
